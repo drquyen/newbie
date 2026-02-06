@@ -3,83 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sao Cũng Được</title>
+    <title>Sao Cũng Được - 4D Mint</title>
     <style>
-        /* Thiết lập nền và căn giữa nội dung */
-        body {
+        :root {
+            --mint: #a7ffeb;
+            --dark-mint: #64ffda;
+            --bg: #e0f2f1;
+        }
+
+        body, html {
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            font-family: 'Montserrat', sans-serif;
+            perspective: 1000px; /* Tạo không gian 3D */
             overflow: hidden;
         }
 
-        /* Hiệu ứng cho dòng chữ */
-        .text-container {
-            text-align: center;
-            padding: 20px;
+        /* Nền hiệu ứng 4D chuyển động */
+        .background-animate {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, var(--mint) 0%, #ffffff 70%);
+            z-index: -1;
+            animation: moveBg 10s ease infinite alternate;
+        }
+
+        @keyframes moveBg {
+            from { transform: translate(-10%, -10%) rotate(0deg); }
+            to { transform: translate(10%, 10%) rotate(5deg); }
+        }
+
+        /* Khối chữ 4D */
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 50px 80px;
+            border-radius: 30px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+            transform-style: preserve-3d;
+            transition: 0.5s;
         }
 
         h1 {
-            color: white;
+            margin: 0;
             font-size: 5rem;
-            font-weight: 800;
+            color: #00897b;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            animation: fadeIn 2s ease-in-out, float 4s ease-in-out infinite;
+            font-weight: 900;
+            text-align: center;
+            /* Đổ bóng chữ tạo độ nổi 4D */
+            text-shadow: 
+                0 1px 0 #ccc,
+                0 2px 0 #c9c9c9,
+                0 3px 0 #bbb,
+                0 4px 0 #b9b9b9,
+                0 5px 0 #aaa,
+                0 6px 1px rgba(0,0,0,.1),
+                0 0 5px rgba(0,0,0,.1),
+                0 1px 3px rgba(0,0,0,.3),
+                0 3px 5px rgba(0,0,0,.2),
+                0 5px 10px rgba(0,0,0,.25),
+                0 10px 10px rgba(0,0,0,.2),
+                0 20px 20px rgba(0,0,0,.15);
+            transform: translateZ(50px); /* Đẩy chữ nổi lên trên mặt phẳng */
         }
 
-        /* Hiệu ứng mờ dần khi tải trang */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Hiệu ứng trôi lơ lửng nhẹ nhàng */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* Trang trí thêm một chút hạt sáng phía sau */
-        .circles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .circles div {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: move 25s infinite linear;
-        }
-
-        @keyframes move {
-            from { transform: translateY(0) rotate(0deg); opacity: 1; }
-            to { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+        .card:hover {
+            transform: rotateX(10deg) rotateY(10deg);
+            box-shadow: -10px 10px 50px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
 
-    <div class="text-container">
-        <h1>Sao cũng được</h1>
-    </div>
+    <div class="background-animate"></div>
 
-    <div class="circles">
-        <div style="width: 80px; height: 80px; left: 10%; animation-delay: 0s;"></div>
-        <div style="width: 120px; height: 120px; left: 20%; animation-delay: 2s; animation-duration: 12s;"></div>
-        <div style="width: 50px; height: 50px; left: 70%; animation-delay: 4s;"></div>
-        <div style="width: 150px; height: 150px; left: 85%; animation-delay: 0s; animation-duration: 18s;"></div>
+    <div class="card">
+        <h1>Sao cũng được</h1>
     </div>
 
 </body>

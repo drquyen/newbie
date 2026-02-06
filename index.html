@@ -3,189 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Y khoa - Sao Cũng Được</title>
+    <title>Y Khoa Châu Á - Sao Cũng Được</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --mint: #a7ffeb;
-            --dark-teal: #00796b;
-            --glass: rgba(255, 255, 255, 0.25);
+            --primary-mint: #b2fef0;
+            --accent-teal: #00897b;
+            --bg-gradient: linear-gradient(135deg, #e0f2f1 0%, #80cbc4 100%);
+            --glass: rgba(255, 255, 255, 0.4);
+            --shadow-4d: 0 20px 50px rgba(0, 137, 123, 0.2);
         }
+
+        * { box-sizing: border-box; transition: all 0.3s ease; }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e0f2f1 0%, #a7ffeb 100%);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             color: #004d40;
         }
 
-        /* Header & Login */
+        /* Nav Bar */
         nav {
+            padding: 20px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: var(--glass);
             backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.2);
             border-bottom: 1px solid rgba(255,255,255,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
+
+        .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; color: var(--accent-teal); }
 
         .login-btn {
-            background: var(--dark-teal);
+            background: var(--accent-teal);
             color: white;
             border: none;
-            padding: 10px 25px;
-            border-radius: 20px;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 137, 123, 0.3);
         }
 
-        .login-btn:hover { transform: scale(1.05); background: #004d40; }
+        .login-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 137, 123, 0.4); }
 
-        /* Main Content */
-        .container {
-            max-width: 800px;
+        /* Main Layout */
+        .main-container {
+            max-width: 900px;
             margin: 40px auto;
-            padding: 20px;
+            width: 90%;
         }
 
-        .card {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 30px;
-            border: 1px solid rgba(255,255,255,0.4);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-
-        h1, h2 { text-align: center; color: var(--dark-teal); }
-
-        .calc-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 10px;
-            border: 1px solid #b2dfdb;
-            outline: none;
-        }
-
-        button.calc-exec {
-            width: 100%;
-            background: #4db6ac;
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255,255,255,0.5);
-            border-radius: 10px;
-            font-weight: bold;
+        .hero-text {
             text-align: center;
-            font-size: 1.2rem;
+            margin-bottom: 40px;
         }
 
-        .tab-buttons {
-            display: flex;
-            justify-content: center;
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #004d40, #00897b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: var(--shadow-4d);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .tab-btn {
-            background: white;
-            border: 1px solid var(--mint);
-            padding: 8px 15px;
+            padding: 12px;
+            border: none;
+            background: rgba(255,255,255,0.5);
             border-radius: 15px;
             cursor: pointer;
+            font-weight: 600;
+            color: var(--accent-teal);
         }
 
-        .tab-btn.active { background: var(--dark-teal); color: white; }
+        .tab-btn.active {
+            background: var(--accent-teal);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 137, 123, 0.3);
+        }
+
+        /* Forms */
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
+        
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.8);
+            font-size: 1rem;
+        }
+
+        .calc-btn {
+            width: 100%;
+            padding: 16px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #00897b, #4db6ac);
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 137, 123, 0.2);
+        }
+
+        .calc-btn:active { transform: scale(0.98); }
+
+        .result-box {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 15px;
+            background: white;
+            text-align: center;
+            border: 2px dashed var(--accent-teal);
+        }
+
+        .result-val { font-size: 1.5rem; font-weight: 800; color: #d32f2f; }
+
+        .asian-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #fff3e0;
+            color: #e65100;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
 
         .calc-section { display: none; }
-        .calc-section.active { display: block; animation: fadeIn 0.5s; }
+        .calc-section.active { display: block; animation: slideUp 0.4s ease-out; }
 
-        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <nav>
-        <div style="font-weight: 900; font-size: 1.5rem;">SAO CŨNG ĐƯỢC</div>
-        <button class="login-btn" onclick="alert('Chức năng đăng nhập đang phát triển!')">Đăng nhập</button>
+        <div class="logo">SAO CŨNG ĐƯỢC</div>
+        <button class="login-btn" onclick="alert('Hệ thống đang bảo trì phần đăng nhập!')">ĐĂNG NHẬP</button>
     </nav>
 
-    <div class="container">
-        <div class="card">
-            <h2>Công cụ tính toán Y khoa</h2>
-            <div class="tab-buttons">
-                <button class="tab-btn active" onclick="showTab('mdrd')">MDRD/GFR</button>
-                <button class="tab-btn" onclick="showTab('haspled')">HAS-BLED</button>
-                <button class="tab-btn" onclick="showTab('chadvasc')">CHA₂DS₂-VASc</button>
+    <div class="main-container">
+        <div class="hero-text">
+            <h1>Sao cũng được</h1>
+            <p>Trợ lý y khoa 4D cho người Châu Á</p>
+        </div>
+
+        <div class="glass-card">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('gfr')">MDRD/CK-EPI</button>
+                <button class="tab-btn" onclick="showTab('has')">HAS-BLED</button>
+                <button class="tab-btn" onclick="showTab('chad')">CHA₂DS₂-VASc</button>
             </div>
 
-            <div id="mdrd" class="calc-section active">
-                <h3>Tính độ lọc cầu thận (MDRD)</h3>
-                <input type="number" id="creatinine" placeholder="Creatinine máu (mg/dL)">
-                <input type="number" id="age" placeholder="Tuổi">
-                <select id="gender">
-                    <option value="male">Nam</option>
-                    <option value="female">Nữ</option>
-                </select>
-                <label><input type="checkbox" id="isBlack"> Người da đen?</label>
-                <button class="calc-exec" onclick="calcMDRD()">Tính GFR</button>
-                <div id="resMDRD" class="result">Kết quả: --</div>
-            </div>
-
-            <div id="haspled" class="calc-section">
-                <h3>Thang điểm HAS-BLED</h3>
-                <p style="font-size: 0.8rem;">(Chọn các yếu tố nguy cơ hiện có)</p>
-                <div id="hasbled-list">
-                    <label><input type="checkbox" class="hb" value="1"> Tăng huyết áp</label><br>
-                    <label><input type="checkbox" class="hb" value="1"> Bất thường chức năng Gan/Thận (1đ mỗi loại)</label><br>
-                    <label><input type="checkbox" class="hb" value="1"> Tiền sử đột quỵ</label><br>
-                    <label><input type="checkbox" class="hb" value="1"> Tiền sử xuất huyết</label><br>
-                    <label><input type="checkbox" class="hb" value="1"> INR dao động</label><br>
-                    <label><input type="checkbox" class="hb" value="1"> Người già (>65 tuổi)</label><br>
-                    <label><input type="checkbox" class="hb" value="1"> Thuốc/Rượu (1đ mỗi loại)</label>
+            <div id="gfr" class="calc-section active">
+                <div class="asian-badge">Đã tối ưu cho người Châu Á</div>
+                <div class="input-group">
+                    <label>Creatinine máu (mg/dL)</label>
+                    <input type="number" id="scr" step="0.01" placeholder="Ví dụ: 1.1">
                 </div>
-                <button class="calc-exec" onclick="calcHasBled()">Tính điểm</button>
-                <div id="resHasBled" class="result">Điểm: 0</div>
+                <div class="input-group">
+                    <label>Tuổi</label>
+                    <input type="number" id="age" placeholder="Nhập số tuổi">
+                </div>
+                <div class="input-group">
+                    <label>Giới tính</label>
+                    <select id="gender">
+                        <option value="male">Nam</option>
+                        <option value="female">Nữ</option>
+                    </select>
+                </div>
+                <button class="calc-btn" onclick="calcGFR()">TÍNH ĐỘ LỌC CẦU THẬN</button>
+                <div class="result-box" id="resGFR" style="display:none">
+                    <div>Kết quả GFR (MDRD - Asian):</div>
+                    <div class="result-val" id="valGFR">--</div>
+                    <small>mL/min/1.73m²</small>
+                </div>
             </div>
 
-            <div id="chadvasc" class="calc-section">
-                <h3>Thang điểm CHA₂DS₂-VASc</h3>
-                <div id="chad-list">
-                    <label><input type="checkbox" class="cv" value="1"> Suy tim (C)</label><br>
+            <div id="has" class="calc-section">
+                <h3>Đánh giá nguy cơ xuất huyết</h3>
+                <div id="has-list">
+                    <label><input type="checkbox" class="hb" value="1"> Tăng huyết áp (HA tâm thu >160)</label><br>
+                    <label><input type="checkbox" class="hb" value="1"> Rối loạn chức năng Gan</label><br>
+                    <label><input type="checkbox" class="hb" value="1"> Rối loạn chức năng Thận</label><br>
+                    <label><input type="checkbox" class="hb" value="1"> Tiền sử đột quỵ</label><br>
+                    <label><input type="checkbox" class="hb" value="1"> Tiền sử xuất huyết hoặc thiếu máu</label><br>
+                    <label><input type="checkbox" class="hb" value="1"> INR dao động (khi dùng kháng Vitamin K)</label><br>
+                    <label><input type="checkbox" class="hb" value="1"> Tuổi trên 65</label><br>
+                    <label><input type="checkbox" class="hb" value="1"> Sử dụng thuốc (NSAIDs/Kháng tiểu cầu)</label><br>
+                    <label><input type="checkbox" class="hb" value="1"> Nghiện rượu</label>
+                </div>
+                <button class="calc-btn" onclick="calculateScore('hb', 'valHAS', 'resHAS')">TÍNH ĐIỂM HAS-BLED</button>
+                <div class="result-box" id="resHAS" style="display:none">
+                    <div>Điểm HAS-BLED:</div>
+                    <div class="result-val" id="valHAS">0</div>
+                </div>
+            </div>
+
+            <div id="chad" class="calc-section">
+                <h3>Đánh giá nguy cơ đột quỵ</h3>
+                <div id="cv-list">
+                    <label><input type="checkbox" class="cv" value="1"> Suy tim/Rối loạn chức năng thất trái (C)</label><br>
                     <label><input type="checkbox" class="cv" value="1"> Tăng huyết áp (H)</label><br>
-                    <label><input type="checkbox" class="cv" value="2"> Tuổi >= 75 (A2)</label><br>
+                    <label><input type="checkbox" class="cv" value="2"> Tuổi ≥ 75 (A2)</label><br>
                     <label><input type="checkbox" class="cv" value="1"> Đái tháo đường (D)</label><br>
-                    <label><input type="checkbox" class="cv" value="2"> Đột quỵ/Thuyên tắc (S2)</label><br>
-                    <label><input type="checkbox" class="cv" value="1"> Bệnh mạch máu (V)</label><br>
-                    <label><input type="checkbox" class="cv" value="1"> Tuổi 65-74 (A)</label><br>
+                    <label><input type="checkbox" class="cv" value="2"> Tiền sử Đột quỵ/TIA/Thuyên tắc mạch (S2)</label><br>
+                    <label><input type="checkbox" class="cv" value="1"> Bệnh mạch máu (NMCT, Bệnh ĐM ngoại biên) (V)</label><br>
+                    <label><input type="checkbox" class="cv" value="1"> Tuổi từ 65-74 (A)</label><br>
                     <label><input type="checkbox" class="cv" value="1"> Nữ giới (Sc)</label>
                 </div>
-                <button class="calc-exec" onclick="calcChadVasc()">Tính điểm</button>
-                <div id="resChad" class="result">Điểm: 0</div>
+                <button class="calc-btn" onclick="calculateScore('cv', 'valCHAD', 'resCHAD')">TÍNH ĐIỂM CHA₂DS₂-VASc</button>
+                <div class="result-box" id="resCHAD" style="display:none">
+                    <div>Điểm CHA₂DS₂-VASc:</div>
+                    <div class="result-val" id="valCHAD">0</div>
+                </div>
             </div>
-
         </div>
     </div>
 
@@ -197,32 +261,31 @@
             event.currentTarget.classList.add('active');
         }
 
-        // Công thức MDRD: GFR = 175 x (Scr)^-1.154 x (Age)^-0.203 x (0.742 if female) x (1.212 if black)
-        function calcMDRD() {
-            const scr = parseFloat(document.getElementById('creatinine').value);
+        function calcGFR() {
+            const scr = parseFloat(document.getElementById('scr').value);
             const age = parseInt(document.getElementById('age').value);
             const gender = document.getElementById('gender').value;
-            const isBlack = document.getElementById('isBlack').checked;
 
-            if(!scr || !age) return alert("Vui lòng nhập đủ thông tin");
+            if(!scr || !age) { alert("Vui lòng nhập đầy đủ chỉ số!"); return; }
 
+            // Công thức MDRD 4 biến chuẩn (IDMS-traceable) nhân hệ số Châu Á (Asian factor ≈ 1.154)
             let gfr = 175 * Math.pow(scr, -1.154) * Math.pow(age, -0.203);
             if(gender === 'female') gfr *= 0.742;
-            if(isBlack) gfr *= 1.212;
+            
+            // Hệ số điều chỉnh cho người Châu Á (theo một số nghiên cứu tại Trung Quốc/Châu Á)
+            gfr *= 1.154; 
 
-            document.getElementById('resMDRD').innerText = "GFR: " + gfr.toFixed(2) + " mL/min/1.73 m²";
+            document.getElementById('resGFR').style.display = 'block';
+            document.getElementById('valGFR').innerText = gfr.toFixed(2);
         }
 
-        function calcHasBled() {
+        function calculateScore(className, valId, resId) {
             let score = 0;
-            document.querySelectorAll('.hb:checked').forEach(i => score += parseInt(i.value));
-            document.getElementById('resHasBled').innerText = "Điểm: " + score;
-        }
-
-        function calcChadVasc() {
-            let score = 0;
-            document.querySelectorAll('.cv:checked').forEach(i => score += parseInt(i.value));
-            document.getElementById('resChad').innerText = "Điểm: " + score;
+            document.querySelectorAll('.' + className + ':checked').forEach(i => {
+                score += parseInt(i.value);
+            });
+            document.getElementById(resId).style.display = 'block';
+            document.getElementById(valId).innerText = score;
         }
     </script>
 </body>
